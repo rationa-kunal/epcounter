@@ -1,0 +1,48 @@
+
+{% extends 'base.html' %}
+
+
+{% block title %}  {% endblock %}
+
+
+{% block content %}
+
+<main>
+
+
+    <div class="container">
+
+        {% if auth %}
+
+        <a href="{% url 'add_serial' %}" class="btn btn-primary">add</a>
+
+        {% for serial in serials %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ serial.title }} <a href="{% url 'edit_serial' serial.id %}" class="btn btn-secondary">edit</a> </h5>
+                <p class="card-text">{{ serial.description }}</p>
+                <hr>
+                season : {{ serial.season }}
+                <a href="{% url 'inc_season' serial.id %}" class="btn btn-info">+</a>
+                <a href="{% url 'dec_season' serial.id %}" class="btn btn-info">-</a>
+                <br>
+                counter : {{ serial.counter }}
+                <a href="{% url 'inc_counter' serial.id %}" class="btn btn-info">+</a>
+                <a href="{% url 'dec_counter' serial.id %}" class="btn btn-info">-</a>
+            </div>
+        </div>
+        {% endfor %}
+
+        {% else %}
+        <div>
+            login to acces information
+        </div>
+
+        {% endif %}
+
+    </div>
+
+
+</main>
+
+{% endblock %}
