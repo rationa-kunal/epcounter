@@ -8,3 +8,9 @@ class addSerialForm(forms.Form):
     description = forms.CharField(max_length=1000)
     season = forms.IntegerField(initial=0)
     counter = forms.IntegerField(initial=0)
+
+
+
+class searchForm(forms.Form):
+
+    search = forms.CharField(max_length=100)

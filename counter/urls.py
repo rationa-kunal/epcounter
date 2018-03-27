@@ -2,6 +2,7 @@ from django.conf.urls import include, url
 from . import views as counter_views
 
 urlpatterns = [
+    url(r'complete_serial/(?P<serial_id>[0-9]+)$', counter_views.complete_serial, name='complete_serial'),
     url(r'edit_serial/(?P<serial_id>[0-9]+)$', counter_views.edit_serial, name='edit_serial'),
     url(r'inc_season/(?P<serial_id>[0-9]+)$', counter_views.inc_season, name='inc_season'),
     url(r'dec_season/(?P<serial_id>[0-9]+)$', counter_views.dec_season, name='dec_season'),

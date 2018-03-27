@@ -16,19 +16,69 @@
 
         <a href="{% url 'add_serial' %}" class="btn btn-primary">add</a>
 
-        {% for serial in serials %}
-        <div class="card">
+        {% if search_form %}
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ search_form.as_p }}
+            <input type="submit" value="submit">
+        </form>
+        {% endif %}
+
+        <!--<div class="modal fade" id="warning-complete-serial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+        <!--<div class="modal-dialog" role="document">-->
+        <!--<div class="modal-content">-->
+        <!--<div class="modal-header">-->
+        <!--<h5 class="modal-title" id="exampleModalLabel">Warning</h5>-->
+        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+        <!--<span aria-hidden="true">&times;</span>-->
+        <!--</button>-->
+        <!--</div>-->
+        <!--<div class="modal-body">Have you really completed serial !!-->
+        <!--</div>-->
+        <!--<div class="modal-footer">-->
+        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+        <!--<button type="button" class="btn btn-primary"><a href="">COMPLETE</a></button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        {% for serial in uncomp_serials %}
+        <div class="card ">
             <div class="card-body">
-                <h5 class="card-title">{{ serial.title }} <a href="{% url 'edit_serial' serial.id %}" class="btn btn-secondary">edit</a> </h5>
+                <h5 class="card-title">
+                    {{ serial.title }}
+                    <a href="{% url 'edit_serial' serial.id %}" class="btn btn-secondary">edit</a>
+                    <a href="#" class="btn btn-secondary" data-toggle="modal" data-target="#warning-complete-serial" data-link="{% url 'complete_serial' serial.id %}">complete</a>
+                </h5>
                 <p class="card-text">{{ serial.description }}</p>
                 <hr>
-                season : {{ serial.season }}
-                <a href="{% url 'inc_season' serial.id %}" class="btn btn-info">+</a>
-                <a href="{% url 'dec_season' serial.id %}" class="btn btn-info">-</a>
+                season : <b class="text-dark counter">{{ serial.season }}</b>
+                <a href="{% url 'inc_season' serial.id %}" class="btn btn-outline-info">completed season</a>
                 <br>
-                counter : {{ serial.counter }}
-                <a href="{% url 'inc_counter' serial.id %}" class="btn btn-info">+</a>
-                <a href="{% url 'dec_counter' serial.id %}" class="btn btn-info">-</a>
+                counter :
+                <a href="{% url 'dec_counter' serial.id %}" class="btn btn-outline-info">-</a>
+                <b class="text-dark counter"> {{ serial.counter }} </b>
+                <a href="{% url 'inc_counter' serial.id %}" class="btn btn-outline-info">+</a>
+
+            </div>
+        </div>
+        {% endfor %}
+
+        {% for serial in comp_serials %}
+        <div class="card text-white bg-secondary mb-3 ">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ serial.title }}
+                    <a href="{% url 'edit_serial' serial.id %}" class="btn btn-secondary">edit</a>
+                </h5>
+                <p class="card-text">{{ serial.description }}</p>
+                <hr>
+                season : <b class="text-dark counter">{{ serial.season }}</b>
+                <br>
+                counter :
+                <b class="text-dark counter"> {{ serial.counter }} </b>
+
             </div>
         </div>
         {% endfor %}
