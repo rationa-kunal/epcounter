@@ -107,4 +107,4 @@ STATIC_URL = '/static/'
 
 # login related info
 
-LOGIN_REDIRECT_URL = 'signup'
+LOGIN_REDIRECT_URL = 'list_serial'

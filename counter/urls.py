@@ -9,5 +9,5 @@ urlpatterns = [
     url(r'inc_counter/(?P<serial_id>[0-9]+)$', counter_views.inc_counter, name='inc_counter'),
     url(r'dec_counter/(?P<serial_id>[0-9]+)$', counter_views.dec_counter, name='dec_counter'),
     url(r'add_serial/$', counter_views.add_serial, name='add_serial'),
-    url(r'$', counter_views.list_serial, name='list_serial'),
+    url(r'', counter_views.list_serial, name='list_serial'),
 ]
