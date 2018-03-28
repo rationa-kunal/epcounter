@@ -13,7 +13,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=raw_password)
             # login(requst, user)
-            return redirect('homepage')
+            return redirect('list_serial')
     else:
         form = UserCreationForm()
     
